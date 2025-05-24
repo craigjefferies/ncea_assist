@@ -1,0 +1,111 @@
+{
+  "as_code": "92012",
+  "as_title": "Materials and Processing Technology 1.1 Develop a Materials and Processing Technology outcome in an authentic context",
+  "keyTerminologyAndClarifications": [
+    {
+      "term": "fit-for-purpose outcome",
+      "definition": "An outcome that meets the intended purpose and requirements as specified in the brief.",
+      "clarification": "In this context, it refers to a product or solution that fulfills the needs of the person, whānau, or community as outlined in the brief."
+    },
+    {
+      "term": "brief",
+      "definition": "A statement of intent that outlines the purpose, end user, and intended environment for an outcome.",
+      "clarification": "Students can use a teacher-provided brief or develop their own, ensuring it includes specifications for the outcome."
+    },
+    {
+      "term": "specifications",
+      "definition": "Precise and measurable statements of intent that include the physical and functional requirements of the outcome.",
+      "clarification": "Specifications are used to evaluate whether the outcome meets the requirements set out in the brief."
+    },
+    {
+      "term": "stakeholder feedback",
+      "definition": "Documented verbal or written information sourced from individuals or groups with expertise or experience.",
+      "clarification": "Feedback must be obtained from more than one stakeholder and is used to inform the development and refinement of the outcome."
+    },
+    {
+      "term": "authentic context",
+      "definition": "A real-life situation where an outcome can be developed and used.",
+      "clarification": "The context should be familiar to students and relevant to the outcome being developed."
+    },
+    {
+      "term": "fitness for purpose",
+      "definition": "The degree to which an outcome meets the requirements of the brief and specifications.",
+      "clarification": "This includes considering the end user(s), the specifications, and the intended environment in which the outcome will be used."
+    }
+  ],
+  "gradingCriteria": [
+    {
+      "levelName": "Not Achieved",
+      "sublevels": [
+        "N1",
+        "N2"
+      ],
+      "mainRequirement": "Fails to meet the minimum requirements for Achievement.",
+      "criteriaInvolves": [],
+      "evidenceFocusPoints": [
+        "Outcome does not meet the basic requirements of the brief.",
+        "Stakeholder feedback is not documented or used.",
+        "Specifications are not addressed or evaluated.",
+        "If the outcome is not relevant to the authentic context, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A project that lacks documented stakeholder feedback and does not address the specifications in the brief would be considered Not Achieved."
+    },
+    {
+      "levelName": "Achievement",
+      "sublevels": [
+        "A3",
+        "A4"
+      ],
+      "mainRequirement": "Creates a fit-for-purpose outcome using a brief with specifications.",
+      "criteriaInvolves": [
+        "Creating a fit-for-purpose outcome for a person, whānau, or community using a brief with specifications."
+      ],
+      "evidenceFocusPoints": [
+        "Outcome meets the requirements of the brief and is relevant to the authentic context.",
+        "Stakeholder feedback is documented and considered.",
+        "Specifications are clearly addressed and evaluated.",
+        "Outcome is tested or assessed in the intended or modelled environment."
+      ],
+      "exampleClarification": "A project that documents stakeholder feedback and addresses all specifications in the brief, even without refinement, would be awarded Achievement."
+    },
+    {
+      "levelName": "Merit",
+      "sublevels": [
+        "M5",
+        "M6"
+      ],
+      "mainRequirement": "Refines the outcome using feedback from multiple stakeholders to improve its fitness for purpose.",
+      "criteriaInvolves": [
+        "Applying feedback from multiple stakeholders to inform the development of the outcome.",
+        "Explaining decisions that inform the improvement of the outcome's fitness for purpose."
+      ],
+      "evidenceFocusPoints": [
+        "Outcome is refined based on feedback from multiple stakeholders.",
+        "Decisions for improvement are explicitly explained.",
+        "Outcome is re-evaluated against updated or clarified specifications.",
+        "If stakeholder input is only documented but not used to inform refinements, Merit cannot be awarded."
+      ],
+      "exampleClarification": "A project that uses stakeholder feedback from more than one source to refine the outcome and provides clear explanations for the decisions made would be awarded Merit."
+    },
+    {
+      "levelName": "Excellence",
+      "sublevels": [
+        "E7",
+        "E8"
+      ],
+      "mainRequirement": "Evaluates the outcome in an authentic context by analysing stakeholder feedback and assessing its fitness for purpose.",
+      "criteriaInvolves": [
+        "Analysing how stakeholder feedback informed the development of the outcome.",
+        "Evaluating the outcome against the brief with specifications for fitness for purpose in the actual or modelled intended environment."
+      ],
+      "evidenceFocusPoints": [
+        "Comprehensive analysis of stakeholder feedback from multiple stakeholders.",
+        "Outcome is thoroughly evaluated against the brief and specifications.",
+        "Fitness for purpose is critically assessed, considering the intended user(s) and environment.",
+        "If comprehensive analysis is missing, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A project that provides a detailed analysis of stakeholder feedback and critically evaluates the outcome against the specifications and intended environment would be awarded Excellence."
+    }
+  ],
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest sublevel where all required evidence is present and explicitly demonstrated. If the criteria are not fully met, state which elements are missing. Justify the decision using explicit references to the student work and explain clearly which sublevel was awarded and why."
+}
