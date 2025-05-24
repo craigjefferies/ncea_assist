@@ -1,0 +1,116 @@
+{
+  "as_code": "92005",
+  "as_title": "Digital Technologies 1.2 Develop a digital technologies outcome",
+  "keyTerminologyAndClarifications": [
+    {
+      "term": "Outcome",
+      "definition": "The final product or result of a process.",
+      "clarification": "In this context, it refers to the digital product created by the student, such as a programmed system, electronic device, web application, or print media solution."
+    },
+    {
+      "term": "Fitness for purpose",
+      "definition": "The suitability of an outcome to meet its intended use.",
+      "clarification": "The outcome must meet the specifications, serve the needs of its intended users, and function reliably in its intended context."
+    },
+    {
+      "term": "Testing",
+      "definition": "The process of examining an outcome to ensure it functions correctly.",
+      "clarification": "Students test their own digital outcome or parts of it to ensure basic functionality before user trialling."
+    },
+    {
+      "term": "Trialling",
+      "definition": "Having others use the outcome to assess its suitability.",
+      "clarification": "Involves end users using the outcome to determine its fitness for purpose and providing feedback for improvements."
+    },
+    {
+      "term": "Conventions",
+      "definition": "Established practices within a specific domain.",
+      "clarification": "Refers to the standard practices in the digital technologies domain being used, such as programming syntax, interface design standards, circuit labeling, or layout principles in print media."
+    },
+    {
+      "term": "Optimally",
+      "definition": "In the best way practicable for a task.",
+      "clarification": "Tools or techniques are applied in the most effective manner for the task, showing deliberate and skilled application to improve quality and performance."
+    }
+  ],
+  "gradingCriteria": [
+    {
+      "levelName": "Not Achieved",
+      "sublevels": [
+        "N1",
+        "N2"
+      ],
+      "mainRequirement": "Fails to meet the minimum requirements for Achievement",
+      "criteriaInvolves": [],
+      "evidenceFocusPoints": [
+        "The outcome does not address the requirements and specifications.",
+        "Basic functionality of the outcome is not demonstrated.",
+        "If the purpose, potential users, or specifications are not described, this sublevel cannot be awarded.",
+        "No evidence of testing or trialling is present."
+      ],
+      "exampleClarification": "A digital project that lacks a clear description of its purpose and fails to function as intended."
+    },
+    {
+      "levelName": "Achievement",
+      "sublevels": [
+        "A3",
+        "A4"
+      ],
+      "mainRequirement": "Produces an outcome that meets basic requirements and specifications.",
+      "criteriaInvolves": [
+        "Describing the purpose, potential users, requirements, and specifications of the outcome.",
+        "Using appropriate tools or techniques to produce an outcome.",
+        "Testing the outcome to ensure basic functionality."
+      ],
+      "evidenceFocusPoints": [
+        "The outcome addresses the basic requirements and specifications.",
+        "The purpose and potential users are clearly described.",
+        "Basic functionality is demonstrated through testing.",
+        "If testing is not documented, this sublevel cannot be awarded.",
+        "A4 requires a thorough and well-structured description of requirements and specifications, while A3 may include a more basic or partially developed explanation."
+      ],
+      "exampleClarification": "A student creates a simple app or electronic system that meets the outlined requirements and functions correctly after testing."
+    },
+    {
+      "levelName": "Merit",
+      "sublevels": [
+        "M5",
+        "M6"
+      ],
+      "mainRequirement": "Refines the outcome to improve its fitness for purpose.",
+      "criteriaInvolves": [
+        "Following conventions relevant to the digital technologies domain.",
+        "Using information from testing to make improvements."
+      ],
+      "evidenceFocusPoints": [
+        "The outcome is refined based on testing feedback.",
+        "Conventions specific to the relevant digital technologies domain (e.g., programming, circuit design, UI layout, print formatting) are followed.",
+        "Improvements enhance the outcome's fitness for purpose.",
+        "If conventions are not followed, this sublevel cannot be awarded.",
+        "M6 requires more significant or targeted improvements based on testing compared to M5."
+      ],
+      "exampleClarification": "A student refines their irrigation monitoring system by calibrating sensors and improving layout based on test results, following relevant digital conventions."
+    },
+    {
+      "levelName": "Excellence",
+      "sublevels": [
+        "E7",
+        "E8"
+      ],
+      "mainRequirement": "Enhances the outcome to optimally meet the requirements and specifications.",
+      "criteriaInvolves": [
+        "Applying tools or techniques optimally.",
+        "Using information from trialling with others to improve fitness for purpose."
+      ],
+      "evidenceFocusPoints": [
+        "The outcome is enhanced to optimally meet specifications.",
+        "Trialling with end users is documented and used for further improvements.",
+        "Tools and techniques are applied in the best way practicable.",
+        "If trialling feedback is not used for enhancement, this sublevel cannot be awarded.",
+        "E8 requires comprehensive enhancements and optimal application of techniques compared to E7."
+      ],
+      "exampleClarification": "A student enhances their plant monitoring app by integrating real-time data visualisation and alert systems, based on feedback from trial users, ensuring performance and usability are optimal."
+    }
+  ],
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria/evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
+}
