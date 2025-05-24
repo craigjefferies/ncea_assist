@@ -1,0 +1,102 @@
+{
+  "as_code": "92006",
+  "as_title": "Digital Technologies 1.3 Demonstrate understanding of usability in human-computer interfaces",
+  "keyTerminologyAndClarifications": [
+    {
+      "term": "human-computer interfaces",
+      "definition": "The means by which a user interacts with a computer system.",
+      "clarification": "In this context, it refers to the design and usability aspects of software interfaces."
+    },
+    {
+      "term": "usability principles",
+      "definition": "Guidelines that ensure a system is easy to use and meets user needs.",
+      "clarification": "These principles include consistency, accessibility, and Nielsen’s usability heuristics."
+    },
+    {
+      "term": "Nielsen’s usability heuristics",
+      "definition": "A set of principles for interface design to improve usability.",
+      "clarification": "These heuristics include principles like visibility of system status, user control, and consistency."
+    },
+    {
+      "term": "mātāpono Māori",
+      "definition": "Māori principles or values.",
+      "clarification": "In this context, it refers to incorporating Māori language and cultural elements into interfaces."
+    },
+    {
+      "term": "tikanga and mātauranga Māori",
+      "definition": "Māori customs and knowledge.",
+      "clarification": "Refers to supporting Māori cultural expressions in interface design to promote inclusivity and cultural relevance."
+    }
+  ],
+  "gradingCriteria": [
+    {
+      "levelName": "Not Achieved",
+      "sublevels": ["N1", "N2"],
+      "mainRequirement": "Fails to meet the minimum requirements for Achievement",
+      "criteriaInvolves": [],
+      "evidenceFocusPoints": [
+        "Does not describe the purpose of human-computer interfaces.",
+        "Fails to identify or describe any usability principles.",
+        "Does not explain how usability principles are applied.",
+        "If no usability principles are mentioned, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A student submission that only lists interface features without discussing their purpose or usability principles would be marked as Not Achieved."
+    },
+    {
+      "levelName": "Achievement",
+      "sublevels": ["A3", "A4"],
+      "mainRequirement": "Describes the purpose and usability principles of human-computer interfaces.",
+      "criteriaInvolves": [
+        "Describing the purpose of human-computer interfaces.",
+        "Describing usability principles and their use in interfaces."
+      ],
+      "evidenceFocusPoints": [
+        "Describes what human-computer interfaces are and their purpose.",
+        "Identifies and describes at least one usability principle.",
+        "Describes how the identified principle is applied in an interface.",
+        "A4 only: Describes how the usability principle improves the interface from a user perspective.",
+        "If no usability principle is identified and applied, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A student describes an interface and mentions consistency as a principle applied, achieving A3. A4 is awarded if they also explain how consistency improves usability."
+    },
+    {
+      "levelName": "Merit",
+      "sublevels": ["M5", "M6"],
+      "mainRequirement": "Explains how usability principles are applied and examines interface usability.",
+      "criteriaInvolves": [
+        "Explaining how usability principles have been applied in interfaces.",
+        "Examining the usability of interfaces in terms of principles."
+      ],
+      "evidenceFocusPoints": [
+        "Explains the application of at least two usability principles (e.g., consistency, accessibility).",
+        "Describes the impact of each principle on the usability of the interface.",
+        "Provides examples from the interface to support explanations.",
+        "M6 only: Includes evaluative comments about how well the interface meets user needs.",
+        "M6 optional: Acknowledges cultural considerations (e.g., mātāpono Māori) that affect usability for diverse users.",
+        "If only one principle is explained, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A student explains how both consistency and accessibility are applied in an interface, achieving M5. M6 is awarded if they also critique the interface's usability and consider different users."
+    },
+    {
+      "levelName": "Excellence",
+      "sublevels": ["E7", "E8"],
+      "mainRequirement": "Evaluates and compares interface usability, suggesting improvements.",
+      "criteriaInvolves": [
+        "Evaluating the usability of interfaces.",
+        "Comparing the usability of different interfaces.",
+        "Applying principles to suggest improvements."
+      ],
+      "evidenceFocusPoints": [
+        "Evaluates usability using multiple usability principles.",
+        "Compares at least two interfaces in terms of how well they meet user needs and usability goals.",
+        "Suggests specific, practical improvements based on usability principles.",
+        "E8 only: Improvements are well justified and demonstrate deep understanding of user needs.",
+        "E8 optional: Incorporates feedback from users or usability testing to inform evaluation.",
+        "E8 optional: Evaluates how well interfaces incorporate cultural values (e.g., te reo Māori, mātāpono Māori) to enhance inclusiveness.",
+        "If no improvements are suggested, this sublevel cannot be awarded."
+      ],
+      "exampleClarification": "A student evaluates two interfaces, comparing their usability and suggesting improvements based on principles, achieving E7. E8 is awarded if the suggestions are detailed, justified, and inclusive of cultural or user feedback."
+    }
+  ],
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria/evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
+}
