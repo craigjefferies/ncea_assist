@@ -1,0 +1,37 @@
+# Core dependencies for NCEA LLM Grading App
+
+# Streamlit framework and UI components
+streamlit>=1.28.0      # Latest version for enhanced UI features (tabs, metrics, progress bars)
+
+# API and HTTP handling
+openai>=1.3.7          # For OpenRouter (GPT-3/4/4o, Gemini etc.)
+httpx>=0.24.0          # HTTP client for API requests
+
+# PDF processing and text extraction
+pymupdf>=1.22.0        # PyMuPDF (imported as fitz), for PDF parsing and text extraction
+
+# Data processing and analysis
+pandas>=2.0.0          # DataFrame operations and data analysis
+
+# Web scraping and HTML parsing
+beautifulsoup4>=4.11.0 # HTML parsing for NZQA exemplar pages (imported as bs4)
+
+# Built-in Python modules (no installation needed)
+# - json (built-in)
+# - re (built-in) 
+# - typing (built-in in Python 3.5+)
+# - pathlib (built-in in Python 3.4+)
+# - collections (built-in)
+# - zipfile (built-in)
+# - os (built-in)
+# - tempfile (built-in)
+# - logging (built-in)
+
+# Type hints and annotations
+typing_extensions>=4.0.0 # For enhanced type hints compatibility
+
+# Optional: Development and testing dependencies
+# Uncomment if you want to run tests or use development tools
+# pytest>=7.0.0          # Testing framework
+# black>=22.0.0          # Code formatter
+# flake8>=5.0.0          # Code linter
