@@ -1,0 +1,132 @@
+{
+  "as_code": "92004",
+  "as_title": "Digital Technologies 1.1 Create a computer program",
+  "keyTerminologyAndClarifications": [
+    {
+      "term": "programming language",
+      "definition": "A formal language comprising a set of instructions that produce various kinds of output.",
+      "clarification": "In this context, it refers to the language used to construct the program, which can be text-based or graphical."
+    },
+    {
+      "term": "testing and debugging",
+      "definition": "The process of identifying, isolating, and fixing errors in software programs.",
+      "clarification": "Ensures the program works on expected, boundary, and invalid cases."
+    },
+    {
+      "term": "documenting",
+      "definition": "The act of writing comments in the code to explain its purpose and functionality.",
+      "clarification": "Comments should clarify the purpose of code sections, including functions, loops, and conditions."
+    },
+    {
+      "term": "control structures",
+      "definition": "Structures that control the flow of execution in a program, such as loops and conditionals.",
+      "clarification": "Includes sequence, selection, and iteration."
+    },
+    {
+      "term": "variables",
+      "definition": "Named storage locations used to hold data that can change during program execution.",
+      "clarification": "Used to store data types and make the program flexible."
+    },
+    {
+      "term": "constants",
+      "definition": "Values that do not change during the execution of a program.",
+      "clarification": "Used in place of literals to enhance program flexibility."
+    },
+    {
+      "term": "collections",
+      "definition": "Data structures that store multiple values or objects.",
+      "clarification": "The program must use data stored in a collection."
+    },
+    {
+      "term": "sequence, selection, and iteration",
+      "definition": "Basic control structures in programming for executing code in order, making decisions, and repeating actions.",
+      "clarification": "Essential for constructing a well-structured program."
+    }
+  ],
+  "gradingCriteria": [
+    {
+      "levelName": "Not Achieved",
+      "sublevels": [
+        "N1",
+        "N2"
+      ],
+      "mainRequirement": "Fails to meet the minimum requirements for Achievement",
+      "criteriaInvolves": [
+        "using a suitable programming language to construct a program that performs a specified task",
+        "testing and debugging the program to ensure it works on expected cases",
+        "documenting the program with comments."
+      ],
+      "evidenceFocusPoints": [
+        "The program does not perform the specified task.",
+        "If the program does not compile or run, this sublevel cannot be awarded.",
+        "The program lacks comments or has insufficient documentation.",
+        "The program fails to handle expected input cases."
+      ],
+      "exampleClarification": "A student submits a program that does not run due to syntax errors and lacks comments. This work would be classified as N1."
+    },
+    {
+      "levelName": "Achievement",
+      "sublevels": [
+        "A3",
+        "A4"
+      ],
+      "mainRequirement": "Constructs a program that performs a specified task with basic documentation and testing.",
+      "criteriaInvolves": [
+        "using a suitable programming language to construct a program that performs a specified task",
+        "testing and debugging the program to ensure it works on expected cases",
+        "documenting the program with comments."
+      ],
+      "evidenceFocusPoints": [
+        "The program performs the specified task.",
+        "Basic comments are present, explaining major sections of the code.",
+        "The program handles expected input cases.",
+        "If the program does not handle expected cases, A3 cannot be awarded.",
+        "A4 is awarded if the program includes comments for all major sections and handles all expected cases."
+      ],
+      "exampleClarification": "A student submits a program that runs correctly for expected inputs and includes basic comments. This work would be classified as A3 because it meets the required functionality and includes minimal documentation."
+    },
+    {
+      "levelName": "Merit",
+      "sublevels": [
+        "M5",
+        "M6"
+      ],
+      "mainRequirement": "Creates a well-structured program with comprehensive documentation and testing.",
+      "criteriaInvolves": [
+        "using succinct and descriptive variable names",
+        "documenting the program with comments that clarify the purpose of code sections",
+        "testing and debugging the program to ensure it works on expected and boundary cases"
+      ],
+      "evidenceFocusPoints": [
+        "The program uses descriptive variable names.",
+        "Comments clarify the purpose of code sections.",
+        "The program handles expected and boundary cases.",
+        "If boundary cases are not handled, M5 cannot be awarded.",
+        "M6 is awarded if the program includes comprehensive comments and handles all boundary cases."
+      ],
+      "exampleClarification": "A student submits a program that runs correctly for expected and boundary inputs, with detailed comments explaining each section. This work would be classified as M5 because it demonstrates good structure and partial coverage of boundary testing."
+    },
+    {
+      "levelName": "Excellence",
+      "sublevels": [
+        "E7",
+        "E8"
+      ],
+      "mainRequirement": "Creates a flexible and robust program with advanced documentation and testing.",
+      "criteriaInvolves": [
+        "using conditions and control structures effectively",
+        "using constants, variables, or derived values in place of literals to make the program flexible",
+        "testing and debugging the program to ensure it works on expected, boundary, and invalid cases"
+      ],
+      "evidenceFocusPoints": [
+        "The program uses conditions and control structures effectively.",
+        "Constants and variables replace literals for flexibility.",
+        "The program handles expected, boundary, and invalid cases.",
+        "If invalid cases are not handled, E7 cannot be awarded.",
+        "E8 is awarded if the program includes advanced comments and handles all invalid cases."
+      ],
+      "exampleClarification": "A student submits a program that runs correctly for all input types, with advanced comments and flexible use of variables. This work would be classified as E7 because it uses robust control structures and addresses all input categories."
+    }
+  ],
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria/evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
+}
