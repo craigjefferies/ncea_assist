@@ -84,13 +84,14 @@
         "discussing differing viewpoints with supporting evidence"
       ],
       "evidenceFocusPoints": [
-        "Biological concepts and processes are described and explained with some depth and relevance to the issue.",
-        "The personal position and proposed action are explained with supporting biological evidence.",
-        "Social implications are considered and linked to the issue.",
-        "Two differing viewpoints are discussed, including reasons for each.",
-        "There is an attempt to justify the proposed action by considering its likely effectiveness or implications."
+        "Biological concepts and processes are described and explained with relevance and some depth.",
+        "The personal position is supported by biological reasoning, explaining why that stance is taken.",
+        "The proposed action is explained and linked to biological knowledge and/or implications.",
+        "There is an explicit connection between biological ideas and the chosen social or ethical implications.",
+        "Two differing viewpoints are presented with a clear discussion of the reasoning or evidence behind each view.",
+        "The student begins to justify their position or action by considering potential effectiveness, outcomes, or implications."
       ],
-      "exampleClarification": "A student evaluates gene editing for medical use, explains how CRISPR works, and supports their stance with reasoning that considers cultural perspectives. This would be M5 or M6 depending on depth."
+      "exampleClarification": "A student critiques the use of blue light glasses by explaining how circadian rhythms work, links this to marketing ethics and consumer behaviour, and supports their action (educational outreach) by discussing why behavioural strategies are more biologically effective. This would be classified as M5 or M6 depending on clarity and depth."
     },
     {
       "levelName": "Excellence",
@@ -105,14 +106,14 @@
         "evaluating viewpoints, sources, and evidence including bias and validity"
       ],
       "evidenceFocusPoints": [
-        "Biological knowledge is analysed and well-integrated with the social context to support a comprehensive response.",
-        "The personal position and proposed action are justified using in-depth biological and social reasoning.",
-        "Implications (biological and/or social) are compared for their significance.",
-        "The likely effectiveness of proposed action(s) is evaluated.",
-        "Sources or viewpoints are critically evaluated for validity, reliability, or potential bias.",
-        "There is clear synthesis of biological knowledge and socio-scientific perspectives to support a justified argument."
+        "Biological knowledge is thoroughly analysed and integrated with social and ethical perspectives.",
+        "The personal position and proposed action are fully justified using deep biological reasoning and social context.",
+        "The significance of biological and/or social implications is compared or weighed.",
+        "The likely effectiveness or consequences of proposed actions are evaluated with supporting rationale.",
+        "Sources or viewpoints are critically assessed for validity, reliability, and bias.",
+        "There is clear synthesis across biological concepts, implications, and differing perspectives to support a well-justified argument."
       ],
-      "exampleClarification": "A student critiques various stances on stem cell therapy, evaluates scientific literature, and justifies their response with reference to biological principles and ethical frameworks. This would be E7 or E8 depending on synthesis and depth."
+      "exampleClarification": "A student evaluates the use of stem cell technology, compares the ethical implications of therapeutic vs reproductive uses, discusses conflicting viewpoints using peer-reviewed evidence, and clearly justifies a societal action with analysis of effectiveness and source reliability. This would be E7 or E8 depending on cohesion and breadth of synthesis."
     }
   ],
   "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
