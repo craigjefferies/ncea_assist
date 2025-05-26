@@ -80,12 +80,12 @@
         "discussing differing viewpoints with supporting evidence"
       ],
       "evidenceFocusPoints": [
-        "Biological concepts and processes are explained and used to support both the personal stance and the proposed action — reasoning must be evident, not just implied.",
+        "Biological concepts and processes are explained and used to support both the personal stance and the proposed action — reasoning must be clear and explicit.",
         "The action is biologically relevant and its selection is justified using biological knowledge.",
-        "There is a clear connection between biological reasoning and at least one social or ethical implication — simply listing both is not sufficient.",
+        "There is a clear connection between biological reasoning and at least one social or ethical implication — not just co-stated.",
         "Two differing viewpoints are discussed with reference to their evidence or logic — one may be critiqued more deeply than the other.",
-        "Reasoning reflects the student's own understanding and may include personal phrasing, reflection, or context — copied or formulaic content does not meet this criterion.",
-        "The response shows a reasoned argument based on evidence — but does not yet show fully integrated justification or critical comparison."
+        "Reasoning reflects the student’s own understanding and may include personal phrasing, reflection, or context — formulaic or purely copied responses do not meet this level.",
+        "The response shows a reasoned argument based on evidence — but does not yet show full integration or critical comparison."
       ],
       "exampleClarification": "A student explains how blue light affects melatonin production and chooses an action based on reducing exposure. They critique two viewpoints and support their own with some biological justification. If links are clear but limited in depth, this would be M5 or M6."
     },
@@ -101,13 +101,13 @@
       "evidenceFocusPoints": [
         "Biological knowledge is analysed and integrated with social or ethical perspectives to support a justified argument — reasoning should go beyond description.",
         "The personal position and proposed action are both justified using biological reasoning and linked to broader social or ethical consequences.",
-        "At least one comparison is made between biological and/or social implications or between actions — a basic comparison is sufficient for E7.",
+        "At least one comparison is made between biological and/or social implications or between actions — a basic or implicit comparison may be sufficient for E7 if clearly tied to the justification.",
         "The effectiveness of the proposed action is considered and explained in terms of biological outcomes or social feasibility.",
-        "At least one source, claim, or viewpoint is evaluated for bias, validity, or credibility — limited source critique may still meet E7; deeper critique supports E8.",
+        "At least one source, claim, or viewpoint is evaluated for bias, validity, or credibility — limited critique may still meet E7; deeper evaluation supports E8.",
         "The response shows original, connected reasoning and a cohesive argument that draws across biology, implications, and differing perspectives — synthesis is expected for E8 but emerging synthesis may meet E7."
       ],
       "exampleClarification": "A student justifies their stance against blue light glasses using clear biological reasoning, compares a behavioural alternative, and briefly critiques the credibility of commercial marketing. While source evaluation is not extensive, the reasoning is authentic and connected — this meets E7."
     }
   ],
-  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning is weak or formulaic, flag this as a confidence issue or reason to grade at the lower sublevel."
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning is weak or formulaic, consider this when determining the final level and note it as a confidence issue."
 }
