@@ -187,8 +187,10 @@ def extract_text_from_docx(docx_path: Path) -> Optional[str]:
             st.warning(f"Could not extract any meaningful text from {docx_path.name}. The document may be empty or contain only formatting.")
             return None
         
-        # Log extraction info for debugging
-        st.info(f"📄 Extracted {len(final_text)} characters from {docx_path.name}")
+        # Log extraction info for debugging (only log once per session)
+        if f"docx_extracted_{docx_path.name}" not in st.session_state:
+            st.info(f"📄 Extracted {len(final_text)} characters from {docx_path.name}")
+            st.session_state[f"docx_extracted_{docx_path.name}"] = True
         
         return final_text
         
@@ -658,13 +660,13 @@ def process_student_portfolio(
         return None
 
     # Use smart truncation to preserve important content
-    max_student_chars = 12000
+    max_student_chars = 50000  # Increased from 12,000 to allow more content
     student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
     prompt = build_grading_prompt(rubric_data, student_text)
 
     # If prompt is still too long, try more aggressive truncation
-    if len(prompt) > 20000:
+    if len(prompt) > 150000:  # Increased from 20,000 to 150,000 characters (~37K tokens)
         st.warning(f"Initial prompt too long for {doc_path.name}, applying more aggressive truncation...")
         
         # Try with even shorter text
@@ -674,7 +676,7 @@ def process_student_portfolio(
         prompt = build_grading_prompt(rubric_data, student_text)
         
         # Final check
-        if len(prompt) > 20000:
+        if len(prompt) > 150000:  # Increased from 20,000
             st.error(f"Prompt for {doc_path.name} is still too long after aggressive truncation. File may contain too much text.")
             return None
 
@@ -735,18 +737,26 @@ def process_portfolio(
     doc_path: Path, rubric_data: dict, client, model: str, max_tokens: int
 ) -> Optional[Dict[str, Any]]:
     """Process a single student portfolio and return grading results."""
-    student_text = extract_text_from_file(doc_path)
+    # Use cached text if available to avoid re-extraction
+    cache_key = f"cached_text_{doc_path.name}"
+    if cache_key in st.session_state:
+        student_text = st.session_state[cache_key]
+    else:
+        student_text = extract_text_from_file(doc_path)
+        if student_text:
+            st.session_state[cache_key] = student_text
+    
     if not student_text:
         return {}
 
     # Use smart truncation to preserve important content
-    max_student_chars = 12000
+    max_student_chars = 50000  # Increased from 12,000 to allow more content
     student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
     prompt = build_grading_prompt(rubric_data, student_text)
     
     # If prompt is still too long, try more aggressive truncation
-    if len(prompt) > 20000:
+    if len(prompt) > 150000:  # Increased from 20,000 to 150,000 characters (~37K tokens)
         st.warning(f"Initial prompt too long for {doc_path.name}, applying more aggressive truncation...")
         
         # Try with even shorter text
@@ -756,7 +766,7 @@ def process_portfolio(
         prompt = build_grading_prompt(rubric_data, student_text)
         
         # Final check
-        if len(prompt) > 20000:
+        if len(prompt) > 150000:  # Increased from 20,000
             st.error(f"Prompt too long for {doc_path.name}")
             return {}
 
@@ -772,15 +782,34 @@ def process_portfolio(
             response_format={"type": "json_object"}
         )
         content = response.choices[0].message.content
-        result = json.loads(content)
+        
+        # Log the full prompt length for debugging
+        logging.info(f"Prompt length for {doc_path.name}: {len(prompt)} characters")
+        
+        try:
+            result = json.loads(content)
+        except json.JSONDecodeError as json_err:
+            logging.error(f"JSON decode error for {doc_path.name}: {json_err}")
+            logging.error(f"Raw content causing error: {content}")
+            st.error(f"Invalid JSON response for {doc_path.name}: {str(json_err)}")
+            return {}
+        
         result['student_file'] = doc_path.name
 
+        # Debug logging for grading results
+        grade_assigned = result.get('grade', 'Unknown')
+        logging.info(f"Grade assigned to {doc_path.name}: {grade_assigned}")
+        
         # Debugging log for failed_criteria
         failed_criteria = result.get('failed_criteria', [])
         logging.info(f"Failed criteria for {doc_path.name}: {failed_criteria}")
+        
+        # Debug: Log a portion of the raw LLM response
+        logging.info(f"Raw LLM response excerpt for {doc_path.name}: {content[:500]}...")
 
         return result
     except Exception as e:
+        logging.error(f"API error for {doc_path.name}: {str(e)}")
         st.error(f"Grading failed for {doc_path.name}: {e}")
         return {}
 
@@ -981,8 +1010,15 @@ def main():
                     student_status.text("Processing detailed analysis...")
                     
                     if grades and any(g != 'ERROR' for g in grades):
-                        # Generate detailed explanations
-                        student_text = extract_text_from_file(doc_file)
+                        # Get student text once (reuse from process_portfolio calls)
+                        # Each process_portfolio call already extracted the text, so we can reuse it
+                        # by extracting it once here for the detailed analysis
+                        if f"cached_text_{doc_file.name}" not in st.session_state:
+                            student_text = extract_text_from_file(doc_file)
+                            st.session_state[f"cached_text_{doc_file.name}"] = student_text
+                        else:
+                            student_text = st.session_state[f"cached_text_{doc_file.name}"]
+                        
                         if student_text:
                             failed_criteria_indepth = explain_failed_criteria_with_llm(
                                 openrouter_client=client,
