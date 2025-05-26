@@ -149,28 +149,46 @@ def extract_text_from_pdf(pdf_path: Path) -> Optional[str]:
         return None
 
 def extract_text_from_docx(docx_path: Path) -> Optional[str]:
-    """Extract text from a DOCX file using python-docx."""
+    """Extract text from a DOCX file using python-docx with smart content prioritization."""
     try:
         doc = Document(docx_path)
         
-        # Extract text from paragraphs
+        # Extract text from paragraphs with priority on content
         text_content = []
-        for paragraph in doc.paragraphs:
-            if paragraph.text.strip():
-                text_content.append(paragraph.text.strip())
         
-        # Extract text from tables
+        # Prioritize headings and main content
+        for paragraph in doc.paragraphs:
+            text = paragraph.text.strip()
+            if text:
+                # Skip very short lines that might be formatting artifacts
+                if len(text) > 3:
+                    text_content.append(text)
+        
+        # Extract text from tables (often contains important data)
         for table in doc.tables:
             for row in table.rows:
+                row_text = []
                 for cell in row.cells:
-                    if cell.text.strip():
-                        text_content.append(cell.text.strip())
+                    cell_text = cell.text.strip()
+                    if cell_text and len(cell_text) > 1:
+                        row_text.append(cell_text)
+                if row_text:
+                    text_content.append(" | ".join(row_text))
         
+        # Join content with appropriate spacing
         final_text = "\n".join(text_content)
         
+        # Clean up excessive whitespace
+        import re
+        final_text = re.sub(r'\n\s*\n', '\n\n', final_text)  # Remove empty lines
+        final_text = re.sub(r' +', ' ', final_text)  # Remove multiple spaces
+        
         if not final_text.strip():
-            st.warning(f"Could not extract any text from {docx_path.name}. The document may be empty.")
+            st.warning(f"Could not extract any meaningful text from {docx_path.name}. The document may be empty or contain only formatting.")
             return None
+        
+        # Log extraction info for debugging
+        st.info(f"📄 Extracted {len(final_text)} characters from {docx_path.name}")
         
         return final_text
         
@@ -178,6 +196,78 @@ def extract_text_from_docx(docx_path: Path) -> Optional[str]:
         st.error(f"Error extracting text from {docx_path.name}: {str(e)}")
         logging.error(f"Error extracting text from {docx_path}: {e}")
         return None
+
+def smart_truncate_text(text: str, max_chars: int, file_name: str = "") -> str:
+    """Intelligently truncate text while preserving important content."""
+    if len(text) <= max_chars:
+        return text
+    
+    # Split into sections/paragraphs
+    paragraphs = text.split('\n\n')
+    
+    # Prioritize content (look for key indicators)
+    important_keywords = [
+        'achievement', 'standard', 'criteria', 'evidence', 'conclusion', 
+        'method', 'result', 'analysis', 'evaluation', 'recommendation',
+        'introduction', 'aim', 'hypothesis', 'discussion', 'summary'
+    ]
+    
+    # Score paragraphs by importance
+    scored_paragraphs = []
+    for i, paragraph in enumerate(paragraphs):
+        score = 0
+        para_lower = paragraph.lower()
+        
+        # Higher score for paragraphs with important keywords
+        for keyword in important_keywords:
+            score += para_lower.count(keyword) * 10
+        
+        # Prefer paragraphs near the beginning and end
+        if i < len(paragraphs) * 0.3:  # First 30%
+            score += 20
+        elif i > len(paragraphs) * 0.7:  # Last 30%
+            score += 10
+        
+        # Prefer longer paragraphs (more substantial content)
+        if len(paragraph) > 100:
+            score += 5
+        
+        scored_paragraphs.append((score, paragraph, i))
+    
+    # Sort by score (highest first)
+    scored_paragraphs.sort(key=lambda x: x[0], reverse=True)
+    
+    # Build truncated text
+    result_text = ""
+    used_chars = 0
+    
+    for score, paragraph, original_index in scored_paragraphs:
+        # Add paragraph if it fits
+        if used_chars + len(paragraph) + 4 <= max_chars:  # +4 for spacing
+            if result_text:
+                result_text += "\n\n"
+            result_text += paragraph
+            used_chars = len(result_text)
+        elif used_chars < max_chars * 0.8:  # Still have significant space
+            # Try to fit a truncated version of this paragraph
+            remaining_space = max_chars - used_chars - 50  # Leave space for truncation notice
+            if remaining_space > 100:  # Only if meaningful space left
+                if result_text:
+                    result_text += "\n\n"
+                result_text += paragraph[:remaining_space] + "..."
+                break
+        else:
+            break
+    
+    if len(result_text) < max_chars * 0.5:
+        # Fallback: simple truncation if smart truncation didn't work well
+        result_text = text[:max_chars]
+    
+    # Add truncation notice
+    if len(text) > len(result_text):
+        result_text += f"\n\n[Content truncated from {len(text)} to {len(result_text)} characters for processing]"
+    
+    return result_text
 
 def extract_text_from_file(file_path: Path) -> Optional[str]:
     """Extract text from either PDF or DOCX files."""
@@ -567,19 +657,29 @@ def process_student_portfolio(
     if not student_text:
         return None
 
-    # Truncate student_text to avoid prompt/token overflow
-    max_student_chars = 15000
-    if len(student_text) > max_student_chars:
-        student_text = student_text[:max_student_chars] + "... [text truncated]"
+    # Use smart truncation to preserve important content
+    max_student_chars = 12000
+    student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
     prompt = build_grading_prompt(rubric_data, student_text)
 
+    # If prompt is still too long, try more aggressive truncation
+    if len(prompt) > 20000:
+        st.warning(f"Initial prompt too long for {doc_path.name}, applying more aggressive truncation...")
+        
+        # Try with even shorter text
+        max_student_chars = 8000
+        student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
+        
+        prompt = build_grading_prompt(rubric_data, student_text)
+        
+        # Final check
+        if len(prompt) > 20000:
+            st.error(f"Prompt for {doc_path.name} is still too long after aggressive truncation. File may contain too much text.")
+            return None
+
     # Log the grading prompt
     log_grading_prompt(prompt, doc_path.name)
-
-    if len(prompt) > 20000:
-        st.error(f"Prompt for {doc_path.name} is too long after truncation. Please use a shorter file.")
-        return None
 
     try:
         response = openrouter_client.chat.completions.create(
@@ -639,15 +739,26 @@ def process_portfolio(
     if not student_text:
         return {}
 
-    # Truncate student text to avoid exceeding token limits
-    max_student_chars = 15000
-    if len(student_text) > max_student_chars:
-        student_text = student_text[:max_student_chars] + "... [truncated]"
+    # Use smart truncation to preserve important content
+    max_student_chars = 12000
+    student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
     prompt = build_grading_prompt(rubric_data, student_text)
+    
+    # If prompt is still too long, try more aggressive truncation
     if len(prompt) > 20000:
-        st.error(f"Prompt too long for {doc_path.name}")
-        return {}
+        st.warning(f"Initial prompt too long for {doc_path.name}, applying more aggressive truncation...")
+        
+        # Try with even shorter text
+        max_student_chars = 8000
+        student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
+        
+        prompt = build_grading_prompt(rubric_data, student_text)
+        
+        # Final check
+        if len(prompt) > 20000:
+            st.error(f"Prompt too long for {doc_path.name}")
+            return {}
 
     try:
         response = client.chat.completions.create(
