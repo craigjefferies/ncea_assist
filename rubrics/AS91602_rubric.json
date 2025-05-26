@@ -80,14 +80,14 @@
         "discussing differing viewpoints with supporting evidence"
       ],
       "evidenceFocusPoints": [
-        "Biological concepts and processes are described and clearly used to explain the student’s personal stance — not just included or summarised.",
-        "The explanation of the proposed action connects directly to biological reasoning or expected biological/social outcomes.",
-        "There is a deliberate and reasoned link between biological knowledge and one or more relevant social or ethical implications.",
-        "Two differing viewpoints are discussed with some evaluation of their reasoning, credibility, or evidence — more than just summarised.",
-        "Reasoning shows the student’s own understanding and may include personal voice, original phrasing, or reflection — not simply repackaged information.",
-        "The student begins to justify their personal position and action by referencing effectiveness or likely outcomes, based on evidence or reasoning."
+        "Biological concepts and processes are explained and used to support both the personal stance and the proposed action — reasoning must be evident, not just implied.",
+        "The action is biologically relevant and its selection is justified using biological knowledge.",
+        "There is a clear connection between biological reasoning and at least one social or ethical implication — simply listing both is not sufficient.",
+        "Two differing viewpoints are discussed with reference to their evidence or logic — one may be critiqued more deeply than the other.",
+        "Reasoning reflects the student's own understanding and may include personal phrasing, reflection, or context — copied or formulaic content does not meet this criterion.",
+        "The response shows a reasoned argument based on evidence — but does not yet show fully integrated justification or critical comparison."
       ],
-      "exampleClarification": "A student explains how melatonin suppression by blue light disrupts circadian rhythms, uses that reasoning to reject the use of blue light glasses, and proposes screen-time reduction as a biologically sound alternative. They discuss two views (pro/con) and evaluate which is more reliable. This would be M5 or M6 depending on cohesion and depth."
+      "exampleClarification": "A student explains how blue light affects melatonin production and chooses an action based on reducing exposure. They critique two viewpoints and support their own with some biological justification. If links are clear but limited in depth, this would be M5 or M6."
     },
     {
       "levelName": "Excellence",
@@ -99,14 +99,14 @@
         "evaluating viewpoints, sources, and evidence including bias and validity"
       ],
       "evidenceFocusPoints": [
-        "Biological knowledge is analysed and meaningfully integrated with social and ethical perspectives to support a coherent and justified position.",
-        "The personal position and proposed action are clearly justified using biological reasoning and linked to wider consequences or implications.",
-        "The response compares the significance or outcomes of at least one biological and/or social implication — a basic comparison is sufficient for E7.",
-        "The likely effectiveness of the proposed action is considered and supported by biological or contextual reasoning — detailed evaluation expected for E8.",
-        "At least one source, claim, or viewpoint is evaluated for credibility, bias, or evidence — a brief evaluation may be sufficient for E7.",
-        "Reasoning and synthesis are original, clearly connected, and reflect authentic student insight — E7 requires clarity; E8 requires full synthesis across strands."
+        "Biological knowledge is analysed and integrated with social or ethical perspectives to support a justified argument — reasoning should go beyond description.",
+        "The personal position and proposed action are both justified using biological reasoning and linked to broader social or ethical consequences.",
+        "At least one comparison is made between biological and/or social implications or between actions — a basic comparison is sufficient for E7.",
+        "The effectiveness of the proposed action is considered and explained in terms of biological outcomes or social feasibility.",
+        "At least one source, claim, or viewpoint is evaluated for bias, validity, or credibility — limited source critique may still meet E7; deeper critique supports E8.",
+        "The response shows original, connected reasoning and a cohesive argument that draws across biology, implications, and differing perspectives — synthesis is expected for E8 but emerging synthesis may meet E7."
       ],
-      "exampleClarification": "A student explains how blue light disrupts melatonin release and uses this to oppose blue light glasses. They justify this position with biological reasoning, critique a claim made by a commercial provider, and compare behavioural changes to product-based solutions. While not all sources are deeply critiqued, the argument is coherent and well-supported — this meets E7."
+      "exampleClarification": "A student justifies their stance against blue light glasses using clear biological reasoning, compares a behavioural alternative, and briefly critiques the credibility of commercial marketing. While source evaluation is not extensive, the reasoning is authentic and connected — this meets E7."
     }
   ],
   "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning is weak or formulaic, flag this as a confidence issue or reason to grade at the lower sublevel."
