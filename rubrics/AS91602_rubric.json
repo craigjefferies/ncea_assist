@@ -1,0 +1,119 @@
+{
+  "as_code": "91602",
+  "as_title": "Biology 3.2 Integrate biological knowledge to develop an informed response to a socio-scientific issue",
+  "keyTerminologyAndClarifications": [
+    {
+      "term": "socio-scientific issue",
+      "definition": "A controversial issue that involves both biological and social implications.",
+      "clarification": "The issue must have differing viewpoints and social consequences, which may be ethical, economic, cultural, or environmental."
+    },
+    {
+      "term": "biological knowledge",
+      "definition": "Relevant biological concepts, processes, and evidence related to the issue.",
+      "clarification": "Should include specific biological content and how it relates to the social and ethical dimensions of the issue."
+    },
+    {
+      "term": "informed response",
+      "definition": "A position or decision supported by biological understanding and consideration of implications.",
+      "clarification": "Must show how biological concepts influence the position and actions taken."
+    },
+    {
+      "term": "integration",
+      "definition": "The synthesis of biological knowledge with social and ethical considerations.",
+      "clarification": "Not just including both types of information but showing how they relate and affect one another."
+    },
+    {
+      "term": "justification",
+      "definition": "Providing well-supported reasoning for a position or action based on evidence.",
+      "clarification": "Should include evaluation of sources, implications, and alternative viewpoints."
+    }
+  ],
+  "gradingCriteria": [
+    {
+      "levelName": "Not Achieved",
+      "sublevels": [
+        "N1",
+        "N2"
+      ],
+      "mainRequirement": "Fails to meet the minimum requirements for Achievement.",
+      "criteriaInvolves": [
+        "attempting to present a response but lacking relevant biological knowledge",
+        "minimal or no connection between biological concepts and the issue",
+        "incomplete or missing recognition of social implications or viewpoints"
+      ],
+      "evidenceFocusPoints": [
+        "Biological concepts and processes are incorrect, minimal, or missing.",
+        "There is no personal position or the position is not supported with biological knowledge.",
+        "Proposed action is unclear, missing, or not related to the issue.",
+        "Social implications are missing or barely referenced.",
+        "Viewpoints are not mentioned or poorly explained."
+      ],
+      "exampleClarification": "A student discusses their opinion on a vaccination policy but does not explain the relevant biological processes or implications. This would be classified as N1 or N2."
+    },
+    {
+      "levelName": "Achievement",
+      "sublevels": [
+        "A3",
+        "A4"
+      ],
+      "mainRequirement": "Integrates biological knowledge to develop an informed response.",
+      "criteriaInvolves": [
+        "presenting a personal position based on relevant biological knowledge",
+        "proposing an action at a personal and/or societal level",
+        "acknowledging social and biological implications and differing opinions"
+      ],
+      "evidenceFocusPoints": [
+        "Biological concepts and processes are correctly identified and linked to the issue, but not explained in detail.",
+        "A personal position is presented and generally supported using relevant biological knowledge.",
+        "An action at a personal and/or societal level is proposed and connected to the issue.",
+        "At least one social implication is identified.",
+        "At least two differing viewpoints are acknowledged, though not analysed in depth."
+      ],
+      "exampleClarification": "A student supports genetic screening and includes basic biological detail about how screening works, and mentions ethical concerns. This would likely be classified as A3 or A4."
+    },
+    {
+      "levelName": "Merit",
+      "sublevels": [
+        "M5",
+        "M6"
+      ],
+      "mainRequirement": "Integrates biological knowledge to develop a reasoned informed response.",
+      "criteriaInvolves": [
+        "explaining why a particular position and action were chosen using biological reasoning",
+        "demonstrating a clear link between biology and social/ethical implications",
+        "discussing differing viewpoints with supporting evidence"
+      ],
+      "evidenceFocusPoints": [
+        "Biological concepts and processes are described and explained with some depth and relevance to the issue.",
+        "The personal position and proposed action are explained with supporting biological evidence.",
+        "Social implications are considered and linked to the issue.",
+        "Two differing viewpoints are discussed, including reasons for each.",
+        "There is an attempt to justify the proposed action by considering its likely effectiveness or implications."
+      ],
+      "exampleClarification": "A student evaluates gene editing for medical use, explains how CRISPR works, and supports their stance with reasoning that considers cultural perspectives. This would be M5 or M6 depending on depth."
+    },
+    {
+      "levelName": "Excellence",
+      "sublevels": [
+        "E7",
+        "E8"
+      ],
+      "mainRequirement": "Integrates biological knowledge to develop a comprehensive informed response.",
+      "criteriaInvolves": [
+        "justifying a position through analysis and evaluation of biological knowledge",
+        "comparing implications or the effectiveness of actions",
+        "evaluating viewpoints, sources, and evidence including bias and validity"
+      ],
+      "evidenceFocusPoints": [
+        "Biological knowledge is analysed and well-integrated with the social context to support a comprehensive response.",
+        "The personal position and proposed action are justified using in-depth biological and social reasoning.",
+        "Implications (biological and/or social) are compared for their significance.",
+        "The likely effectiveness of proposed action(s) is evaluated.",
+        "Sources or viewpoints are critically evaluated for validity, reliability, or potential bias.",
+        "There is clear synthesis of biological knowledge and socio-scientific perspectives to support a justified argument."
+      ],
+      "exampleClarification": "A student critiques various stances on stem cell therapy, evaluates scientific literature, and justifies their response with reference to biological principles and ethical frameworks. This would be E7 or E8 depending on synthesis and depth."
+    }
+  ],
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
+}
