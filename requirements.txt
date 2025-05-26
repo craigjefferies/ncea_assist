@@ -10,6 +10,9 @@ httpx>=0.24.0          # HTTP client for API requests
 # PDF processing and text extraction
 pymupdf>=1.22.0        # PyMuPDF (imported as fitz), for PDF parsing and text extraction
 
+# DOCX processing and text extraction
+python-docx>=0.8.11    # For extracting text from Word documents (.docx files)
+
 # Data processing and analysis
 pandas>=2.0.0          # DataFrame operations and data analysis
 
