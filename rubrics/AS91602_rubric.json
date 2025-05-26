@@ -93,14 +93,14 @@
         "evaluating viewpoints, sources, and evidence including bias and validity"
       ],
       "evidenceFocusPoints": [
-        "Biological knowledge is thoroughly analysed and integrated with social and ethical perspectives to support a cohesive argument.",
-        "The personal position and proposed action are justified using deep biological reasoning and consideration of implications.",
-        "Biological and/or social implications are compared for their significance, showing insight into potential trade-offs.",
-        "The effectiveness or likely outcomes of the proposed action are evaluated using evidence or predicted consequences.",
-        "Sources or viewpoints are assessed for bias, validity, and scientific reliability, including attention to context or conflicts of interest.",
-        "There is clear synthesis across biological concepts, social implications, and differing perspectives to create a justified and persuasive response."
+        "Biological knowledge is analysed and meaningfully integrated with social and ethical perspectives to support a coherent and justified position.",
+        "The personal position and proposed action are clearly justified using biological reasoning and linked to wider consequences or implications.",
+        "The response compares the significance or outcomes of at least one biological and/or social implication — a basic comparison is sufficient for E7.",
+        "The likely effectiveness of the proposed action is considered and supported by biological or contextual reasoning — detailed evaluation expected for E8.",
+        "At least one source, claim, or viewpoint is evaluated for credibility, bias, or evidence — a brief evaluation may be sufficient for E7.",
+        "The argument brings together biological knowledge, implications, and differing viewpoints in a cohesive way — E7 requires clarity; E8 requires full synthesis."
       ],
-      "exampleClarification": "A student evaluates the use of stem cell technology, compares the ethical implications of therapeutic vs reproductive uses, discusses conflicting viewpoints using peer-reviewed evidence, and clearly justifies a societal action with analysis of effectiveness and source reliability. This would be E7 or E8 depending on cohesion and breadth of synthesis."
+      "exampleClarification": "A student explains how blue light disrupts melatonin release and uses this to oppose blue light glasses. They justify this position with biological reasoning, critique a claim made by a commercial provider, and compare behavioural changes to product-based solutions. While not all sources are deeply critiqued, the argument is coherent and well-supported — this meets E7."
     }
   ],
   "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why."
