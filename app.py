@@ -14,6 +14,7 @@ import os
 import tempfile
 import logging
 import time
+from docx import Document
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, 
@@ -145,6 +146,49 @@ def extract_text_from_pdf(pdf_path: Path) -> Optional[str]:
     except Exception as e:
         st.error(f"Error extracting text from {pdf_path.name}: {str(e)}")
         logging.error(f"Error extracting text from {pdf_path}: {e}")
+        return None
+
+def extract_text_from_docx(docx_path: Path) -> Optional[str]:
+    """Extract text from a DOCX file using python-docx."""
+    try:
+        doc = Document(docx_path)
+        
+        # Extract text from paragraphs
+        text_content = []
+        for paragraph in doc.paragraphs:
+            if paragraph.text.strip():
+                text_content.append(paragraph.text.strip())
+        
+        # Extract text from tables
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    if cell.text.strip():
+                        text_content.append(cell.text.strip())
+        
+        final_text = "\n".join(text_content)
+        
+        if not final_text.strip():
+            st.warning(f"Could not extract any text from {docx_path.name}. The document may be empty.")
+            return None
+        
+        return final_text
+        
+    except Exception as e:
+        st.error(f"Error extracting text from {docx_path.name}: {str(e)}")
+        logging.error(f"Error extracting text from {docx_path}: {e}")
+        return None
+
+def extract_text_from_file(file_path: Path) -> Optional[str]:
+    """Extract text from either PDF or DOCX files."""
+    file_extension = file_path.suffix.lower()
+    
+    if file_extension == '.pdf':
+        return extract_text_from_pdf(file_path)
+    elif file_extension == '.docx':
+        return extract_text_from_docx(file_path)
+    else:
+        st.error(f"Unsupported file type: {file_extension}")
         return None
 
 def explain_failed_criteria_with_llm(
@@ -508,13 +552,18 @@ def log_grading_prompt(prompt: str, student_file: str):
 
 # Update process_student_portfolio to log the grading prompt
 def process_student_portfolio(
-    pdf_path: Path, rubric_data: dict, openrouter_client, model_name: str, max_tokens: int
+    doc_path: Path, rubric_data: dict, openrouter_client, model_name: str, max_tokens: int
 ) -> Optional[Dict[str, Any]]:
     """Process a single student portfolio and return grading results."""
-    if not validate_pdf_path(pdf_path):
+    # Validate file path based on extension
+    if doc_path.suffix.lower() == '.pdf':
+        if not validate_pdf_path(doc_path):
+            return None
+    elif doc_path.suffix.lower() != '.docx':
+        st.error(f"Unsupported file type: {doc_path.suffix}")
         return None
 
-    student_text = extract_text_from_pdf(pdf_path)
+    student_text = extract_text_from_file(doc_path)
     if not student_text:
         return None
 
@@ -526,10 +575,10 @@ def process_student_portfolio(
     prompt = build_grading_prompt(rubric_data, student_text)
 
     # Log the grading prompt
-    log_grading_prompt(prompt, pdf_path.name)
+    log_grading_prompt(prompt, doc_path.name)
 
     if len(prompt) > 20000:
-        st.error(f"Prompt for {pdf_path.name} is too long after truncation. Please use a shorter file.")
+        st.error(f"Prompt for {doc_path.name} is too long after truncation. Please use a shorter file.")
         return None
 
     try:
@@ -547,17 +596,17 @@ def process_student_portfolio(
         result_content = response.choices[0].message.content
         try:
             result = json.loads(result_content)
-            result['student_file'] = pdf_path.name
-            result['file_path'] = str(pdf_path)
+            result['student_file'] = doc_path.name
+            result['file_path'] = str(doc_path)
             return result
         except json.JSONDecodeError as json_err:
-            st.error(f"Invalid JSON response for {pdf_path.name}: {str(json_err)}")
-            logging.error(f"JSON decode error for {pdf_path}: {json_err}")
+            st.error(f"Invalid JSON response for {doc_path.name}: {str(json_err)}")
+            logging.error(f"JSON decode error for {doc_path}: {json_err}")
             return None
 
     except Exception as api_err:
-        logging.error(f"API error processing {pdf_path}: {api_err}")
-        st.error(f"Error processing {pdf_path.name}: {api_err}")
+        logging.error(f"API error processing {doc_path}: {api_err}")
+        st.error(f"Error processing {doc_path.name}: {api_err}")
         return None
 
 def save_detailed_results_to_csv(detailed_results, filename="grading_detailed_results.csv"):
@@ -583,10 +632,10 @@ def save_detailed_results_to_csv(detailed_results, filename="grading_detailed_re
 
 # Add debugging logs to track `failed_criteria`
 def process_portfolio(
-    pdf_path: Path, rubric_data: dict, client, model: str, max_tokens: int
+    doc_path: Path, rubric_data: dict, client, model: str, max_tokens: int
 ) -> Optional[Dict[str, Any]]:
     """Process a single student portfolio and return grading results."""
-    student_text = extract_text_from_pdf(pdf_path)
+    student_text = extract_text_from_file(doc_path)
     if not student_text:
         return {}
 
@@ -597,7 +646,7 @@ def process_portfolio(
 
     prompt = build_grading_prompt(rubric_data, student_text)
     if len(prompt) > 20000:
-        st.error(f"Prompt too long for {pdf_path.name}")
+        st.error(f"Prompt too long for {doc_path.name}")
         return {}
 
     try:
@@ -613,15 +662,15 @@ def process_portfolio(
         )
         content = response.choices[0].message.content
         result = json.loads(content)
-        result['student_file'] = pdf_path.name
+        result['student_file'] = doc_path.name
 
         # Debugging log for failed_criteria
         failed_criteria = result.get('failed_criteria', [])
-        logging.info(f"Failed criteria for {pdf_path.name}: {failed_criteria}")
+        logging.info(f"Failed criteria for {doc_path.name}: {failed_criteria}")
 
         return result
     except Exception as e:
-        st.error(f"Grading failed for {pdf_path.name}: {e}")
+        st.error(f"Grading failed for {doc_path.name}: {e}")
         return {}
 
 def calculate_final_grade(grades: List[str]) -> str:
@@ -698,14 +747,14 @@ def main():
     # 2. File Upload Section
     st.header("Upload Student Portfolios")
     files = st.file_uploader(
-        "Choose PDF files or ZIP archives",
-        type=['pdf', 'zip'],
+        "Choose PDF/DOCX files or ZIP archives",
+        type=['pdf', 'docx', 'zip'],
         accept_multiple_files=True,
-        help="Upload individual PDF portfolios or ZIP files containing multiple portfolios"
+        help="Upload individual PDF/DOCX portfolios or ZIP files containing multiple portfolios"
     )
     
-    # Process files into PDFs
-    pdfs = []
+    # Process files into supported documents
+    documents = []
     if files:
         # Update file count in session state for workflow tracking
         st.session_state.uploaded_files_count = len(files)
@@ -725,39 +774,45 @@ def main():
         temp_dir.mkdir(exist_ok=True)
         
         for uploaded_file in files:
-            if uploaded_file.name.lower().endswith('.pdf'):
-                pdf_path = temp_dir / uploaded_file.name
-                with open(pdf_path, 'wb') as f:
+            file_ext = uploaded_file.name.lower()
+            if file_ext.endswith('.pdf') or file_ext.endswith('.docx'):
+                # Handle individual PDF or DOCX files
+                doc_path = temp_dir / uploaded_file.name
+                with open(doc_path, 'wb') as f:
                     f.write(uploaded_file.read())
-                pdfs.append(pdf_path)
-            elif uploaded_file.name.lower().endswith('.zip'):
+                documents.append(doc_path)
+            elif file_ext.endswith('.zip'):
+                # Handle ZIP files
                 zip_path = temp_dir / uploaded_file.name
                 with open(zip_path, 'wb') as f:
                     f.write(uploaded_file.read())
                 
-                # Extract ZIP and find PDFs
+                # Extract ZIP and find PDFs and DOCX files
                 with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                     extract_dir = temp_dir / f"extracted_{uploaded_file.name[:-4]}"
                     zip_ref.extractall(extract_dir)
                     
-                    for pdf_file in extract_dir.rglob("*.pdf"):
-                        pdfs.append(pdf_file)
+                    # Find all supported document types
+                    for doc_file in extract_dir.rglob("*.pdf"):
+                        documents.append(doc_file)
+                    for doc_file in extract_dir.rglob("*.docx"):
+                        documents.append(doc_file)
     else:
         # Reset file count when no files
         st.session_state.uploaded_files_count = 0
 
     # 3. Grading Section
-    if pdfs:
+    if documents:
         st.header("Start Grading Process")
         
         col1, col2 = st.columns([2, 1])
         with col1:
-            st.info(f"**Ready to grade**: {len(pdfs)} portfolios using {rubric_data.get('as_title', 'Unknown')}")
+            st.info(f"**Ready to grade**: {len(documents)} portfolios using {rubric_data.get('as_title', 'Unknown')}")
         with col2:
             grade_button = st.button("Start Grading", type="primary", use_container_width=True)
         
         # Handle grading process immediately in this section with progress shown here
-        if 'grade_button' in locals() and grade_button and pdfs:
+        if 'grade_button' in locals() and grade_button and documents:
             # Reset previous results
             reset_grading_state()
             st.session_state.grading_started = True
@@ -775,16 +830,16 @@ def main():
             # Current student progress container
             current_student_container = st.container()
             
-            total_files = len(pdfs)
+            total_files = len(documents)
             
-            for file_idx, pdf_file in enumerate(pdfs):
+            for file_idx, doc_file in enumerate(documents):
                 # Update overall progress
                 overall_progress.progress((file_idx) / total_files)
-                overall_status.text(f"Processing file {file_idx + 1} of {total_files}: {pdf_file.name}")
+                overall_status.text(f"Processing file {file_idx + 1} of {total_files}: {doc_file.name}")
                 
                 # Show only current student progress
                 with current_student_container:
-                    st.markdown(f"**Current Student: {pdf_file.name}**")
+                    st.markdown(f"**Current Student: {doc_file.name}**")
                     
                     # Progress for this student's grading attempts
                     student_progress = st.progress(0)
@@ -798,7 +853,7 @@ def main():
                         student_progress.progress((attempt) / 3)
                         student_status.text(f"Grading attempt {attempt + 1}/3...")
                         
-                        result = process_portfolio(pdf_file, rubric_data, client, "google/gemini-2.5-flash-preview", max_tokens)
+                        result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview", max_tokens)
                         if result:
                             grades.append(result.get('grade', 'N/A'))
                             failed_criteria_list.extend(result.get('failed_criteria', []))
@@ -816,7 +871,7 @@ def main():
                     
                     if grades and any(g != 'ERROR' for g in grades):
                         # Generate detailed explanations
-                        student_text = extract_text_from_pdf(pdf_file)
+                        student_text = extract_text_from_file(doc_file)
                         if student_text:
                             failed_criteria_indepth = explain_failed_criteria_with_llm(
                                 openrouter_client=client,
@@ -833,7 +888,7 @@ def main():
                         variability = calculate_variability([g for g in grades if g != 'ERROR'])
                         
                         results.append({
-                            'Student File': pdf_file.name,
+                            'Student File': doc_file.name,
                             'Grade 1': grades[0] if len(grades) > 0 else 'N/A',
                             'Grade 2': grades[1] if len(grades) > 1 else 'N/A',
                             'Grade 3': grades[2] if len(grades) > 2 else 'N/A',
@@ -1070,7 +1125,7 @@ def show_help_sidebar():
             st.markdown("""
             1. **Enter API Key**: Add your OpenRouter API key
             2. **Select Rubric**: Choose the NCEA standard
-            3. **Upload Files**: Add PDF portfolios or ZIP files
+            3. **Upload Files**: Add PDF/DOCX portfolios or ZIP files
             4. **Start Grading**: Begin automated assessment
             5. **View Results**: Check grades and statistics
             6. **Generate Insights**: Get learning analysis
@@ -1080,18 +1135,24 @@ def show_help_sidebar():
             st.markdown("""
             **Common Issues:**
             - **API Error**: Check your OpenRouter API key
-            - **PDF Error**: Ensure files are readable PDFs
+            - **File Error**: Ensure files are readable PDFs or DOCX
             - **Slow Grading**: Large files take more time
             - **Memory Issues**: Try smaller batches
             
             **Tips:**
-            - Use clear, scanned PDF files
+            - Use clear PDF files or properly formatted DOCX
             - Batch size: 5-10 files recommended
             - Check file sizes (< 10MB per file)
+            - ZIP files can contain mixed PDF/DOCX files
             """)
         
         with st.expander("Understanding Results"):
             st.markdown("""
+            **Supported File Types:**
+            - PDF documents (.pdf)
+            - Word documents (.docx)
+            - ZIP archives containing PDFs and/or DOCX files
+            
             **Grade Columns:**
             - **Grade 1-3**: Individual grading attempts
             - **Final Grade**: Consensus grade
