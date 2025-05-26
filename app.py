@@ -1069,8 +1069,8 @@ def main():
                 st.session_state["detailed_results"] = results
                 st.session_state["rubric"] = rubric_data
                 
-                # Auto-refresh the page to show results
-                st.rerun()
+                # Results will be displayed automatically in the Results Section below
+                # No need for st.rerun() which would reset the UI
             else:
                 st.error("No successful grading results. Please check your files and try again.")
 
