@@ -109,4 +109,5 @@
       "exampleClarification": "A student explains how blue light disrupts melatonin release and uses this to oppose blue light glasses. They justify this position with biological reasoning, critique a claim made by a commercial provider, and compare behavioural changes to product-based solutions. While not all sources are deeply critiqued, the argument is coherent and well-supported — this meets E7."
     }
   ],
-  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning i
+  "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning is weak or formulaic, flag this as a confidence issue or reason to grade at the lower sublevel."
+}
