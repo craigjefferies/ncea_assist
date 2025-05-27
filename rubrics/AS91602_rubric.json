@@ -10,7 +10,7 @@
     {
       "term": "biological knowledge",
       "definition": "Relevant biological concepts, processes, and evidence related to the issue.",
-      "clarification": "Must include accurate biological content that is applied to the issue, such as explaining physiological processes, evolutionary reasoning, or ecological consequences."
+      "clarification": "Biological knowledge includes:\n- biological concepts and processes relating to the issue\n- biological and social implications of the issue\n- differing opinions or viewpoints about the issue."
     },
     {
       "term": "informed response",
@@ -35,59 +35,42 @@
   ],
   "gradingCriteria": [
     {
-      "levelName": "Not Achieved",
-      "sublevels": ["N1", "N2"],
-      "mainRequirement": "Fails to meet the minimum requirements for Achievement.",
-      "criteriaInvolves": [
-        "attempting to present a response but lacking relevant biological knowledge",
-        "minimal or no connection between biological concepts and the issue",
-        "incomplete or missing recognition of social implications or viewpoints"
-      ],
-      "evidenceFocusPoints": [
-        "Biological concepts and processes are incorrect, minimal, or missing.",
-        "There is no personal position or the position is not supported with biological knowledge.",
-        "Proposed action is unclear, missing, or not related to the issue.",
-        "Social implications are missing or barely referenced.",
-        "Viewpoints are not mentioned or poorly explained."
-      ],
-      "exampleClarification": "A student discusses their opinion on a vaccination policy but does not explain the relevant biological processes or implications. This would be classified as N1 or N2."
-    },
-    {
       "levelName": "Achievement",
       "sublevels": ["A3", "A4"],
       "mainRequirement": "Integrates biological knowledge to develop an informed response.",
       "criteriaInvolves": [
-        "presenting a personal position based on relevant biological knowledge",
-        "proposing an action at a personal and/or societal level",
-        "acknowledging social and biological implications and differing opinions"
+        "presenting a personal position that is supported with relevant biological knowledge",
+        "proposing an action at a personal and/or societal level that relates to the issue",
+        "identifying biological and social implications of the issue",
+        "acknowledging differing viewpoints, even if not critically evaluated"
       ],
       "evidenceFocusPoints": [
-        "Biological concepts and processes are correctly identified and generally accurate, though explanation may be limited.",
-        "A personal position is presented and supported using relevant biological knowledge, even if not fully explained.",
-        "An action at a personal and/or societal level is proposed and clearly linked to the issue.",
-        "At least one social implication is identified and briefly linked to the issue.",
-        "Two differing viewpoints are acknowledged, even if they are only described without critical discussion."
+        "Biological concepts and processes are correct and clearly linked to the issue or proposed action, though explanation may be surface-level.",
+        "A personal position is provided and supported using basic biological knowledge.",
+        "A personal and/or societal action is proposed and tied to the issue.",
+        "At least one social implication is identified and explained in relation to the issue.",
+        "Differing viewpoints or stakeholder positions are acknowledged, though discussion is mostly descriptive."
       ],
-      "exampleClarification": "A student supports genetic screening and includes basic biological detail about how screening works, and mentions ethical concerns. This would likely be classified as A3 or A4."
+      "exampleClarification": "A student supports folate fortification and outlines its biological role in preventing NTDs. They describe pros and cons, name groups with opposing views, and propose both personal and societal actions. While accurate and complete, the argument lacks reasoning, evaluation, or critique — this meets A4."
     },
     {
       "levelName": "Merit",
       "sublevels": ["M5", "M6"],
       "mainRequirement": "Integrates biological knowledge to develop a reasoned informed response.",
       "criteriaInvolves": [
-        "explaining why a particular position and action were chosen using biological reasoning",
-        "demonstrating a clear link between biology and social/ethical implications",
-        "discussing differing viewpoints with supporting evidence"
+        "explaining the reasons behind a personal position and proposed action using relevant biological knowledge",
+        "making clear connections between biological understanding and one or more social or ethical implications",
+        "acknowledging and describing differing viewpoints with supporting evidence or stakeholder context",
+        "demonstrating personal reasoning through student voice, even if limited in critique or comparison"
       ],
       "evidenceFocusPoints": [
-        "Biological concepts and processes are explained and used to support both the personal stance and the proposed action — reasoning must be clear and explicit.",
-        "The action is biologically relevant and its selection is justified using biological knowledge.",
-        "There is a clear connection between biological reasoning and at least one social or ethical implication — not just co-stated.",
-        "Two differing viewpoints are discussed with reference to their evidence or logic — one may be critiqued more deeply than the other.",
-        "Reasoning reflects the student’s own understanding and may include personal phrasing, reflection, or context — formulaic or purely copied responses do not meet this level.",
-        "The response shows a reasoned argument based on evidence — but does not yet show full integration or critical comparison."
+        "Biological processes and implications are explained accurately and used to support both the personal position and proposed action.",
+        "The response goes beyond simply stating facts — ideas are connected through reasoning, though this may be basic or undeveloped.",
+        "A social or ethical implication is clearly identified and connected to the issue or proposed action.",
+        "Viewpoints are acknowledged and attributed to specific individuals or groups — analysis may be limited or absent.",
+        "There may be some emerging reasoning around sources or evidence strength, but detailed critique is not expected at this level."
       ],
-      "exampleClarification": "A student explains how blue light affects melatonin production and chooses an action based on reducing exposure. They critique two viewpoints and support their own with some biological justification. If links are clear but limited in depth, this would be M5 or M6."
+      "exampleClarification": "A student supports flour fortification using accurate biological reasoning and explains how it reaches more people than bread. They describe opposing viewpoints (e.g. consumer choice) and mention costs and uptake in other countries. While thoughtful, the response does not critically evaluate bias or fully integrate implications — this fits M5."
     },
     {
       "levelName": "Excellence",
@@ -95,18 +78,19 @@
       "mainRequirement": "Integrates biological knowledge to develop a comprehensive informed response.",
       "criteriaInvolves": [
         "justifying a position through analysis and evaluation of biological knowledge",
-        "comparing implications or the effectiveness of actions",
-        "evaluating viewpoints, sources, and evidence including bias and validity"
+        "proposing and justifying action(s) by comparing biological and social implications",
+        "evaluating viewpoints and sources, including bias and scientific credibility",
+        "presenting a cohesive argument with at least partial synthesis of perspectives and implications"
       ],
       "evidenceFocusPoints": [
-        "Biological knowledge is analysed and integrated with social or ethical perspectives to support a justified argument — reasoning should go beyond description.",
-        "The personal position and proposed action are both justified using biological reasoning and linked to broader social or ethical consequences.",
-        "At least one comparison is made between biological and/or social implications or between actions — a basic or implicit comparison may be sufficient for E7 if clearly tied to the justification.",
-        "The effectiveness of the proposed action is considered and explained in terms of biological outcomes or social feasibility.",
-        "At least one source, claim, or viewpoint is evaluated for bias, validity, or credibility — limited critique may still meet E7; deeper evaluation supports E8.",
-        "The response shows original, connected reasoning and a cohesive argument that draws across biology, implications, and differing perspectives — synthesis is expected for E8 but emerging synthesis may meet E7."
+        "Biological reasoning supports both position and action, and is integrated with at least one social or ethical implication.",
+        "Includes a comparison between actions or implications that supports the justification.",
+        "At least one viewpoint or source is evaluated for credibility, bias, or scientific acceptance — this may include reference to public opinion or expert debate.",
+        "Justification includes data or studies with reference to reliability (e.g. specific statistics or expert names).",
+        "Student reasoning is connected, shows a clear position, and may explore complexity (e.g. limitations or alternative strategies).",
+        "Emerging synthesis is evident — ideas are not just listed but interact in a developing argument."
       ],
-      "exampleClarification": "A student justifies their stance against blue light glasses using clear biological reasoning, compares a behavioural alternative, and briefly critiques the credibility of commercial marketing. While source evaluation is not extensive, the reasoning is authentic and connected — this meets E7."
+      "exampleClarification": "A student supports mandatory folic acid fortification using detailed biological reasoning, explains its effects on neural tube defects, and critiques consumer choice and stakeholder opinions. They reference experts and studies while comparing delivery methods (bread vs flour). The argument is cohesive, evaluative, and shows emerging synthesis — this meets E7."
     }
   ],
   "finalInstructionForLLM": "Evaluate the student work against the criteria and evidence focus points for each band and sublevel. Award the highest grade/sublevel for which all required evidence is present. If not achieved, state which criteria or evidence was missing. Justify the decision using explicit references to the student work and clarify which sublevel was awarded and why. If student voice or authentic reasoning is weak or formulaic, consider this when determining the final level and note it as a confidence issue."
