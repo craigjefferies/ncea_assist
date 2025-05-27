@@ -1045,7 +1045,7 @@ def main():
                                     api_key=api_key,
                                     failed_criteria=failed_criteria_list,
                                     student_text=student_text,
-                                    model_name="google/gemini-2.5-flash-preview",
+                                    model_name="google/google/gemini-2.5-flash-preview-05-20",
                                     max_tokens=max_tokens
                                 )
                             else:
