@@ -1009,7 +1009,7 @@ def main():
                                 student_progress.progress((attempt) / 3)
                                 student_status.text(f"Grading attempt {attempt + 1}/3...")
                                 
-                                result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview-05-20", max_tokens)
+                                result = process_portfolio(doc_file, rubric_data, client, "x-ai/grok-3-mini-beta", max_tokens)
                                 if result:
                                     grades.append(result.get('grade', 'N/A'))
                                     failed_criteria_list.extend(result.get('failed_criteria', []))
@@ -1045,7 +1045,7 @@ def main():
                                     api_key=api_key,
                                     failed_criteria=failed_criteria_list,
                                     student_text=student_text,
-                                    model_name="google/gemini-2.5-flash-preview-05-20",
+                                    model_name="x-ai/grok-3-mini-beta",
                                     max_tokens=max_tokens
                                 )
                             else:
