@@ -1009,7 +1009,7 @@ def main():
                                 student_progress.progress((attempt) / 3)
                                 student_status.text(f"Grading attempt {attempt + 1}/3...")
                                 
-                                result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview", max_tokens)
+                                result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview-05-20", max_tokens)
                                 if result:
                                     grades.append(result.get('grade', 'N/A'))
                                     failed_criteria_list.extend(result.get('failed_criteria', []))
