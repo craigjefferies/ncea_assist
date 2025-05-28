@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.INFO,
 # --- Constants and Configuration ---
 GRADE_ORDER = ['N1', 'N2', 'A3', 'A4', 'M5', 'M6', 'E7', 'E8']
 
-def build_grading_prompt(rubric_data: dict, student_text: str) -> str:
+def build_grading_prompt(rubric_data: dict, student_text: str, reasoning_mode: str = "standard") -> str:
     """Build a prompt for grading student work based on the rubric, requesting per-criterion judgments."""
     as_code = rubric_data.get('as_code', 'Unknown')
     as_title = rubric_data.get('as_title', 'Unknown Title')
@@ -51,19 +51,47 @@ def build_grading_prompt(rubric_data: dict, student_text: str) -> str:
 
             criteria_section += f"Example Clarification: {example_clarification}\n"
 
+    # Base grading instructions
+    base_instructions = """### Grading Instructions:
+1. For each criterion, provide a boolean (true/false) indicating if it is met, grouped by level (e.g., {{"A": [true, false, ...], "M": [true, ...], ...}}).
+2. Identify which criteria the student has met and which they have NOT met.
+3. Provide brief evidence from the student's work for each criterion.
+4. Determine the appropriate grade based on the highest level where ALL criteria are met.
+5. Ensure that students meet ALL criteria from lower grades to achieve higher grades.
+6. The final grade should be the highest sublevel where ALL criteria are fully met."""
+
+    # Add concept-map specific instructions for reasoning_mode="concept_map"
+    if reasoning_mode == "concept_map":
+        # Detect if this is a Level-3 standard (as_code starts with "93" or contains level indicators)
+        is_level_3 = as_code.startswith('93') or any(term in as_title.lower() for term in ['level 3', 'l3', 'excellence', 'evaluate', 'analyse'])
+        
+        if is_level_3:
+            concept_map_instructions = """
+
+### CONCEPT-MAP REASONING MODE (Level-3 Deep Analysis):
+7. CONCEPTUAL LINKAGE ANALYSIS: Before assigning grades, construct a mental concept map showing:
+   - Key concepts and how they interconnect
+   - Evidence chains linking different criteria
+   - Deep understanding demonstrated through cross-criterion connections
+8. EXCELLENCE CRITERIA EMPHASIS: Pay special attention to Evidence Focus Points requiring:
+   - Critical evaluation and analysis
+   - Synthesis of multiple concepts
+   - Demonstration of deeper understanding beyond surface-level application
+9. LINKAGE VALIDATION: Ensure Excellence grades only when student demonstrates:
+   - Clear conceptual connections between different aspects
+   - Evidence of understanding relationships between concepts
+   - Ability to evaluate, synthesize, or critically analyze rather than just describe
+10. HOLISTIC ASSESSMENT: Consider the overall coherence and depth of understanding across all criteria."""
+            
+            base_instructions += concept_map_instructions
+
     prompt = f"""You are an expert NCEA (New Zealand Certificate of Educational Achievement) Assessment Assistant.
 Your task is to grade a student portfolio for {as_title} (AS{as_code}) based on the provided rubric.
 
 ### Rubric Criteria:
 {criteria_section}
 
-### Grading Instructions:
-1. For each criterion, provide a boolean (true/false) indicating if it is met, grouped by level (e.g., {{"A": [true, false, ...], "M": [true, ...], ...}}).
-2. Identify which criteria the student has met and which they have NOT met.
-3. Provide brief evidence from the student's work for each criterion.
-4. Determine the appropriate grade based on the highest level where ALL criteria are met.
-5. Ensure that students meet ALL criteria from lower grades to achieve higher grades.
-6. The final grade should be the highest sublevel where ALL criteria are fully met.
+{base_instructions}
 
 ### Response Format:
 Respond with a JSON object in the following structure:
@@ -644,7 +672,7 @@ def log_grading_prompt(prompt: str, student_file: str):
 
 # Update process_student_portfolio to log the grading prompt
 def process_student_portfolio(
-    doc_path: Path, rubric_data: dict, openrouter_client, model_name: str, max_tokens: int
+    doc_path: Path, rubric_data: dict, openrouter_client, model_name: str, max_tokens: int, reasoning_mode: str = "standard"
 ) -> Optional[Dict[str, Any]]:
     """Process a single student portfolio and return grading results."""
     # Validate file path based on extension
@@ -663,7 +691,7 @@ def process_student_portfolio(
     max_student_chars = 50000  # Increased from 12,000 to allow more content
     student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
-    prompt = build_grading_prompt(rubric_data, student_text)
+    prompt = build_grading_prompt(rubric_data, student_text, reasoning_mode)
 
     # If prompt is still too long, try more aggressive truncation
     if len(prompt) > 150000:  # Increased from 20,000 to 150,000 characters (~37K tokens)
@@ -673,7 +701,7 @@ def process_student_portfolio(
         max_student_chars = 8000
         student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
         
-        prompt = build_grading_prompt(rubric_data, student_text)
+        prompt = build_grading_prompt(rubric_data, student_text, reasoning_mode)
         
         # Final check
         if len(prompt) > 150000:  # Increased from 20,000
@@ -734,7 +762,7 @@ def save_detailed_results_to_csv(detailed_results, filename="grading_detailed_re
 
 # Add debugging logs to track `failed_criteria`
 def process_portfolio(
-    doc_path: Path, rubric_data: dict, client, model: str, max_tokens: int
+    doc_path: Path, rubric_data: dict, client, model: str, max_tokens: int, reasoning_mode: str = "standard"
 ) -> Optional[Dict[str, Any]]:
     """Process a single student portfolio and return grading results."""
     # Use cached text if available to avoid re-extraction
@@ -753,7 +781,7 @@ def process_portfolio(
     max_student_chars = 50000  # Increased from 12,000 to allow more content
     student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
 
-    prompt = build_grading_prompt(rubric_data, student_text)
+    prompt = build_grading_prompt(rubric_data, student_text, reasoning_mode)
     
     # If prompt is still too long, try more aggressive truncation
     if len(prompt) > 150000:  # Increased from 20,000 to 150,000 characters (~37K tokens)
@@ -763,7 +791,7 @@ def process_portfolio(
         max_student_chars = 8000
         student_text = smart_truncate_text(student_text, max_student_chars, doc_path.name)
         
-        prompt = build_grading_prompt(rubric_data, student_text)
+        prompt = build_grading_prompt(rubric_data, student_text, reasoning_mode)
         
         # Final check
         if len(prompt) > 150000:  # Increased from 20,000
@@ -858,6 +886,14 @@ def main():
                                help="Enter your OpenRouter API key to access LLM models")
         max_tokens = st.slider("Max Tokens", 1000, 8000, 4000, 500,
                              help="Maximum tokens for LLM responses")
+        
+        # Reasoning mode selector
+        reasoning_mode = st.selectbox(
+            "Reasoning Mode",
+            options=["standard", "concept_map"],
+            index=0,
+            help="Standard: Regular NCEA grading. Concept Map: Enhanced reasoning for Level-3 standards requiring deep linkage analysis."
+        )
         
         # Show help sidebar
         show_help_sidebar()
@@ -1009,7 +1045,7 @@ def main():
                                 student_progress.progress((attempt) / 3)
                                 student_status.text(f"Grading attempt {attempt + 1}/3...")
                                 
-                                result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview-05-20", max_tokens)
+                                result = process_portfolio(doc_file, rubric_data, client, "google/gemini-2.5-flash-preview-05-20", max_tokens, reasoning_mode)
                                 if result:
                                     grades.append(result.get('grade', 'N/A'))
                                     failed_criteria_list.extend(result.get('failed_criteria', []))
